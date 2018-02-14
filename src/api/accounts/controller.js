@@ -1,7 +1,8 @@
 const bcrypt = require("bcryptjs")
-const jwt = require("jsonwebtoken")
 
 const Account = require("./model")
+
+const helpers = require("../../helpers")
 
 module.exports = {
   getAll: (req, res) => {
@@ -50,14 +51,15 @@ module.exports = {
       password: req.body.password
     }
 
-    console.log(body)
-
-    Account.findOne({ email: req.body.email })
+    Account.findOne({ email: body.email })
       .then((account) => {
-        const validPassword = bcrypt.compareSync(password, account.hash)
+        const validPassword = bcrypt.compareSync(
+          body.password,
+          account.password
+        )
 
-        console.log(">>> account found:", account)
-        console.log({ validPassword })
+        // console.log(">>> account found:", account)
+        // console.log({ validPassword })
 
         if (!account) {
           // (1) If account is not found
@@ -73,7 +75,7 @@ module.exports = {
           })
         } else {
           // (3) If the found account is matched with the password
-          console.log({ account })
+          // console.log({ account })
 
           // (4) Create token content and config
           let content = {
@@ -82,23 +84,25 @@ module.exports = {
               iss: process.env.URL, // ISSUER: DOMAIN/URL of the service
               sub: account._id, // SUBJECT: OID/UID/UUID/GUID
               id: account.id, // ACCOUNTID: Sequential ID
-              name: account.name // NAME: Full name
+              name: account.name, // NAME: Full name
+              email: account.email // EMAIL: Email address
             },
             secret: process.env.JWT_SECRET,
             options: {
               expiresIn: "30d" // EXPIRATION: 30 days
             }
           }
-          console.log({ content })
+          // console.log({ content })
 
           // (5) Generate a token
-          const token = auth.generateJWT(content)
-          console.log({ token })
+          const token = helpers.generateJWT(content)
+
+          // console.log({ token })
 
           // (6) Finally send that token
           res.send({
             message: "Logged in",
-            account: account,
+            email: body.email,
             token: token
           })
         }
