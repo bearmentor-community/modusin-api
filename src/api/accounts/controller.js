@@ -18,5 +18,45 @@ module.exports = {
         data: account
       })
     })
+  },
+
+  register: (req, res) => {
+    const data = {
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password
+    }
+    const newAccount = new Account(data)
+
+    newAccount.save((err) => {
+      delete data.password
+
+      if (err) res.send("error")
+      else {
+        res.send({
+          registered: data,
+          success: true
+        })
+      }
+    })
+  },
+
+  login: (req, res) => {
+    const data = {
+      email: req.body.email,
+      password: req.body.password
+    }
+
+    res.send({
+      logged_in: data
+    })
+  },
+
+  logout: (req, res) => {
+    const data = {}
+
+    res.send({
+      registered: data
+    })
   }
 }

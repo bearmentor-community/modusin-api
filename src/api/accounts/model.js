@@ -5,7 +5,7 @@ http://schema.org/Person
 
 const bcrypt = require("bcryptjs")
 const mongoose = require("mongoose")
-// const sequence = require("mongoose-sequence")(mongoose)
+const sequence = require("mongoose-sequence")(mongoose)
 const Schema = mongoose.Schema
 
 // -----------------------------------------------------------------------------
@@ -30,7 +30,8 @@ const schema = new Schema(
       lowercase: true
     },
     password: String,
-    hash: String
+    hash: String,
+    salt: String
   },
   { timestamps: true }
 )
@@ -39,7 +40,7 @@ const schema = new Schema(
 // GENERATED FIELDS
 
 // Auto increment accountId
-// schema.plugin(sequence, { inc_field: "id" })
+schema.plugin(sequence, { inc_field: "id" })
 
 // -----------------------------------------------------------------------------
 // MIDDLEWARES
@@ -47,29 +48,29 @@ const schema = new Schema(
 // - PASSWORD HASH + SALT GENERATOR
 
 // BEWARE! We cannot define the same mongoose middlewares separately
-// schema.pre("save", function(next) {
-//   if (!this.isModified("password")) return next()
-//   else {
-//     // Generate salt with predefined factor
-//     // BEWARE! We cannot do these in synchronous way
-//     bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
-//       if (err) return next(err)
-//       else {
-//         // Generate hash with current plain password and salt
-//         bcrypt.hash(this.password, salt, (err, hash) => {
-//           if (err) return next(err)
-//           else {
-//             // override the clear text password with the hashed one
-//             this.password = hash
-//             this.hash = hash
-//             this.salt = salt
-//             return next() // finally!
-//           }
-//         })
-//       }
-//     })
-//   }
-// })
+schema.pre("save", function(next) {
+  if (!this.isModified("password")) return next()
+  else {
+    // Generate salt with predefined factor
+    // BEWARE! We cannot do these in synchronous way
+    bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
+      if (err) return next(err)
+      else {
+        // Generate hash with current plain password and salt
+        bcrypt.hash(this.password, salt, (err, hash) => {
+          if (err) return next(err)
+          else {
+            // override the clear text password with the hashed one
+            this.password = hash
+            this.hash = hash
+            this.salt = salt
+            return next() // finally!
+          }
+        })
+      }
+    })
+  }
+})
 
 // -----------------------------------------------------------------------------
 // DATA POPULATION
