@@ -11,11 +11,12 @@ module.exports = {
 
   getOne: (req, res) => {
     const id = Number(req.params.id)
-    const account = Account.findOne({ id: id })
 
-    res.send({
-      id: id,
-      data: account
+    Account.findOne({ id: id }, (err, account) => {
+      res.send({
+        id: id,
+        data: account
+      })
     })
   }
 }
