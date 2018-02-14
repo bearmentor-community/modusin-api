@@ -9,7 +9,7 @@ The goal of this app is to clone a [Medium](https://medium.com) web app, called 
 ## Tech Stack
 
 - Node.js
-- Express.js
+- Express.js / Sails.js
 - MongoDB & Mongoose
 - PostgreSQL & Sequelize
 - Heroku / Now.sh
@@ -19,8 +19,6 @@ The goal of this app is to clone a [Medium](https://medium.com) web app, called 
 ## Development
 
 ### Application
-
-Open `server` directory.
 
 Install `yarn` with `npm`
 
@@ -61,8 +59,7 @@ yarn deploy
 
 ```json
 {
-  _id: ObjectId,
-  id: Number,
+  "_id": ObjectId,
   "id": Number,
   "title": String,
   "image_name": String,
@@ -78,12 +75,12 @@ yarn deploy
 }
 ```
 
-### Users
+### Accounts
 
 ```json
 {
-  _id: ObjectId,
-  id: Number,
+  "_id": ObjectId,
+  "id": Number,
   "name": String,
   "bio": Number
   "email": String,
@@ -108,7 +105,7 @@ Root URL: `http://localhost:3000`
 |--------------|------|-------------|
 | `/posts`     | GET  | Get all posts
 | `/posts`     | DEL  | Delete all posts
-| `/posts`     | POST | Post a new thing
+| `/posts`     | POST | Create a new post
 | `/posts/:id` | GET  | Get thing by id
 | `/posts/:id` | DEL  | Delete thing by id
 | `/posts/:id` | PUT  | Update thing by id
@@ -119,6 +116,7 @@ Root URL: `http://localhost:3000`
 |-----------------|------|-------------|
 | `/register`     | POST | Sign up for a new user
 | `/login`        | POST | Sign in with existed user
+| `/logout`       | POST | Sign in with existed user
 | `/accounts`     | GET  | Get all accounts
 | `/accounts`     | DEL  | Delete all accounts
 | `/accounts/:id` | GET  | Get one user profile by id
