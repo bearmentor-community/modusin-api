@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node-dev src/index.js",
+    "mon": "nodemon src/index.js",
     "start": "node src/index.js"
   },
   "repository": {
