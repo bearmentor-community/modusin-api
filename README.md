@@ -1,5 +1,7 @@
 # Modusin API Data (Backend)
 
+--------------------------------------------------------------------------------
+
 ## Development
 
 Install and run MongoDB service
@@ -18,4 +20,18 @@ Run development server
 
 ```sh
 npm run dev
+```
+
+--------------------------------------------------------------------------------
+
+## Testing
+
+### Create a new user
+
+```
+POST /users
+{
+  "email": "me@mhaidarhanif.com",
+  "password": "sangatrahasiasekali"
+}
 ```
