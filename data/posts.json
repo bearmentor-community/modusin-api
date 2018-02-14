@@ -1,0 +1,22 @@
+[{
+  "description": "",
+  "picture": "",
+  "vote": [
+    "5a83197e872c5a0d8248ac48",
+    "5a8311c11ba4fd03e182d10e",
+    "5a8311c11ba4fd03e182d10e",
+    "5a830caa749edb7da800f6ee"
+  ],
+  "tags": [
+    "technology",
+    "comedy",
+    "hollywood"
+  ],
+  "response_of": [],
+  "crate_date": "2018-02-14T07:19:06.743Z",
+  "_id": "5a83148e0b1a22082c3a2f0b",
+  "_user": "5a830caa749edb7da800f6ee",
+  "title": "Your Cortex Contains 17 Billion Computers",
+  "content": "Brains receive input from the outside world, their neurons do something to that input, and create an output. That output may be a thought (I want curry for dinner); it may be an action (make curry); it may be a change in mood (yay curry!). Whatever the output, that “something” is a transformation of some form of input (a menu) to output (“chicken dansak, please”). And if we think of a brain as a device that transforms inputs to outputs then, inexorably, the computer becomes our analogy of choice.\nFor some this analogy is merely a useful rhetorical device; for others it is a serious idea. But the brain isn’t a computer. Each neuron is a computer. Your cortex contains 17 billion computers.\nThis is a picture of a pyramidal cell, the neuron that makes up most of your cortex. The blob in the centre is the neuron’s body; the wires stretching and branching above and below are the dendrites, the twisting cables that gather the inputs from other neurons near and far. Those inputs fall all across the dendrites, some right up close to the body, some far out on the tips. Where they fall matters.",
+  "__v": 4
+}]

@@ -1,0 +1,33 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Modusin API Data (Backend)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/modusintech/api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/modusintech/api/issues"
+  },
+  "homepage": "https://github.com/modusintech/api#readme",
+  "dependencies": {
+    "consolidate": "^0.15.0",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "live-server": "^1.2.0",
+    "lodash": "^4.17.4",
+    "mongoose": "^5.0.2",
+    "mongoose-id-validator": "^0.4.3",
+    "nodemon": "^1.14.11",
+    "pretty-error": "^2.1.1"
+  }
+}
