@@ -11,7 +11,10 @@
     "type": "git",
     "url": "git+https://github.com/modusintech/api.git"
   },
-  "keywords": ["modusin", "api"],
+  "keywords": [
+    "modusin",
+    "api"
+  ],
   "author": "M Haidar Hanif <npm@mhaidarhanif.com> (https://mhaidarhanif.com)",
   "license": "MIT",
   "bugs": {
@@ -22,7 +25,7 @@
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
-    "express": "~4.15.5",
+    "express": "^4.15.5",
     "morgan": "~1.9.0",
     "serve-favicon": "~2.4.5"
   },
