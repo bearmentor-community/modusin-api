@@ -1,12 +1,8 @@
 const express = require("express")
 const router = express.Router()
 
-router.get("/", function(req, res) {
-  res.send({
-    message: "MODUSIN API",
-    status: true,
-    mongodb_uri: process.env.MONGODB_URI
-  })
-})
+const controller = require("./controller")
+
+router.get("/", controller.get)
 
 module.exports = router
