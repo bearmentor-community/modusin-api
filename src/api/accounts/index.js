@@ -1,9 +1,14 @@
 const express = require("express")
 const router = express.Router()
 
-router.get("/", function(req, res) {
+router.get('/', function(req, res) {
   res.send({
-    data: "USERS"
+    message: 'List of Users',
+    user:{
+      name: 'Aditia Darmadi',
+      email: 'aditiadj@outlook.com',
+      password: 'similikiti'
+    }
   })
 })
 
