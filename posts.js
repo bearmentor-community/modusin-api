@@ -1,13 +1,14 @@
-var express = require('express')
-var fs = require('fs')
-const hlprs = require('./helpers')
-const url = require('url')
-var router = express.Router({mergeParams: true})
+const express = require("express")
+const fs = require("fs")
+const hlprs = require("./helpers")
+const url = require("url")
+const router = express.Router({ mergeParams: true })
 
 // schema with validation
-var ObjectId = hlprs.mongoose.Schema.ObjectId
-var ObjectIdType = hlprs.mongoose.Types.ObjectId
-var Schema = hlprs.mongoose.Schema
+const ObjectId = hlprs.mongoose.Schema.ObjectId
+const ObjectIdType = hlprs.mongoose.Types.ObjectId
+const Schema = hlprs.mongoose.Schema
+
 var userSchema = new hlprs.mongoose.Schema({
   _user: {
     type: Schema.Types.ObjectId,
@@ -36,9 +37,11 @@ var userSchema = new hlprs.mongoose.Schema({
     default: Date.now
   }
 })
-var posts = hlprs.mongoose.model('posts', userSchema)
+
+var posts = hlprs.mongoose.model("posts", userSchema)
+
 //------------------------------------------------------- readAllPosts (V)
-router.get('/', function(req, res) {
+router.get("/", function(req, res) {
   posts.find({}, (err, user) => {
     if (err) {
       res.send(`fail : ${err}`)
@@ -48,7 +51,7 @@ router.get('/', function(req, res) {
 })
 
 //------------------------------------------------------- createNewPosts (V)
-router.post('/', (req, res) => {
+router.post("/", (req, res) => {
   var postDetail = req.body
   if (postDetail._user) {
     postDetail._user = new ObjectIdType(postDetail._user)
@@ -64,22 +67,28 @@ router.post('/', (req, res) => {
 })
 
 //------------------------------------------------------- getPostByPostId (v)
-router.get('/id/:id', function(req, res) {
+router.get("/id/:id", function(req, res) {
   var userId = new ObjectIdType(req.params.id)
 
-  posts.find({
-    _id: userId
-  }, (err, user) => {
-    if (err) {
-      res.send(`fail : ${err}`)
+  posts.find(
+    {
+      _id: userId
+    },
+    (err, user) => {
+      if (err) {
+        res.send(`fail : ${err}`)
+      }
+      res.json(user)
     }
-    res.json(user)
-  })
+  )
 })
 
 //------------------------------------------------------- voteUserPost (V)
-router.post('/vote', (req, res) => {
-  if (!ObjectIdType.isValid(req.body._id) || !ObjectIdType.isValid(req.body.voter)) {
+router.post("/vote", (req, res) => {
+  if (
+    !ObjectIdType.isValid(req.body._id) ||
+    !ObjectIdType.isValid(req.body.voter)
+  ) {
     return res.send("error object id not valid")
   }
 
@@ -95,36 +104,39 @@ router.post('/vote', (req, res) => {
         if (err) {
           res.send(`failed : ${err}`)
         } else {
-          res.send("Vote Success");
+          res.send("Vote Success")
         }
-      });
-    }
-  });
-})
-
-//------------------------------------------------------- getPostByTag
-router.post('/getByTags', (req, res) => {
-  var tags = req.body.tags
-  posts.find({
-    tags: {
-      $all: tags
-    }
-  }, (err, post) => {
-    if (err) {
-      res.send(`fail : ${err}`)
-    } else {
-      res.json(post)
+      })
     }
   })
 })
 
+//------------------------------------------------------- getPostByTag
+router.post("/getByTags", (req, res) => {
+  var tags = req.body.tags
+  posts.find(
+    {
+      tags: {
+        $all: tags
+      }
+    },
+    (err, post) => {
+      if (err) {
+        res.send(`fail : ${err}`)
+      } else {
+        res.json(post)
+      }
+    }
+  )
+})
+
 //------------------------------------------------------- SearchByQueryString (V)
-router.get('/search', function(req, res) {
+router.get("/search", function(req, res) {
   var queryStr = url.parse(req.url, true).query
-  console.log(queryStr);
+  console.log(queryStr)
   posts.find(queryStr, (err, post) => {
     if (err) {
-      res.send('fail')
+      res.send("fail")
     } else {
       res.json(post)
     }
@@ -132,12 +144,12 @@ router.get('/search', function(req, res) {
 })
 
 //------------------------------------------------------- searchContentContainSpecificString (V)
-router.post('/searchPostsByContent', function(req, res) {
+router.post("/searchPostsByContent", function(req, res) {
   var key = req.body.keywords
-  console.log(key);
-  posts.find({content: /[key]/}, (err, post) => {
+  console.log(key)
+  posts.find({ content: /[key]/ }, (err, post) => {
     if (err) {
-      res.send('fail')
+      res.send("fail")
     } else {
       res.json(post)
     }
@@ -145,35 +157,38 @@ router.post('/searchPostsByContent', function(req, res) {
 })
 
 //------------------------------------------------------- DeleteUserById
-router.delete('/id/:userId', (req, res) => {
+router.delete("/id/:userId", (req, res) => {
   var userId = req.params.userId
-  user.remove({
-    _id: userId
-  }, function(err) {
-    if (err) {
-      res.status(500).send(err.message)
+  user.remove(
+    {
+      _id: userId
+    },
+    function(err) {
+      if (err) {
+        res.status(500).send(err.message)
+      }
+      res.send("User successfully deleted")
     }
-    res.send("User successfully deleted")
-  });
+  )
 })
 
 //------------------------------------------------------- Edit User
-router.put('/id/:userId', (req, res) => {
+router.put("/id/:userId", (req, res) => {
   var userId = req.params.userId
   var updateValue = req.body
 
   user.findById(userId, function(err, user) {
     if (err) {
-      console.log(err);
+      console.log(err)
     }
-    user.set(updateValue);
+    user.set(updateValue)
     user.save(function(err, updatedUser) {
       if (err) {
-        console.log(err);
+        console.log(err)
       }
-      res.send("User profile successfully updated");
-    });
-  });
+      res.send("User profile successfully updated")
+    })
+  })
 })
 
 module.exports = router
