@@ -2,11 +2,10 @@ const Account = require("./model")
 
 module.exports = {
   getAll: (req, res) => {
-    // const accounts = []
-    const accounts = Account.find()
-
-    res.send({
-      data: accounts
+    Account.find({}, (err, accounts) => {
+      res.send({
+        data: accounts
+      })
     })
   },
 
