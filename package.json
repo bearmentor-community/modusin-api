@@ -11,7 +11,10 @@
     "type": "git",
     "url": "git+https://github.com/modusintech/api.git"
   },
-  "keywords": ["modusin", "api"],
+  "keywords": [
+    "modusin",
+    "api"
+  ],
   "author": "M Haidar Hanif <npm@mhaidarhanif.com> (https://mhaidarhanif.com)",
   "license": "MIT",
   "bugs": {
