@@ -28,7 +28,9 @@ const server = http.createServer(app)
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port, host)
+server.listen(port, host, () => {
+  console.log(`App is listening on ${host}:${port}`)
+})
 
 server.on("error", onError)
 server.on("listening", onListening)
