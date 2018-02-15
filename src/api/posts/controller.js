@@ -4,6 +4,8 @@ const Post = require("./model")
 const helpers = require("../../helpers")
 
 module.exports = {
+  // ---------------------------------------------------------------------------
+  // GET /posts
   get: (req, res) => {
     Post.find({}, (err, resources) => {
       res.send({
@@ -12,6 +14,8 @@ module.exports = {
     })
   },
 
+  // ---------------------------------------------------------------------------
+  // GET /posts/:id
   getById: (req, res) => {
     Post.findOne({ id: Number(req.params.id) }, (err, account) => {
       res.send({
@@ -21,6 +25,8 @@ module.exports = {
     })
   },
 
+  // ---------------------------------------------------------------------------
+  // POST /posts
   post: (req, res) => {
     const newPost = new Post({
       title: req.body.title,
@@ -35,6 +41,30 @@ module.exports = {
         message: "New post has been saved",
         data: newPost
       })
+    })
+  },
+
+  // ---------------------------------------------------------------------------
+  // DELETE /posts
+  delete: (req, res) => {
+    res.send({
+      message: "All posts have been deleted"
+    })
+  },
+
+  // ---------------------------------------------------------------------------
+  // DELETE /posts/:id
+  deleteById: (req, res) => {
+    res.send({
+      message: `Post with id: ${id} has been deleted`
+    })
+  },
+
+  // ---------------------------------------------------------------------------
+  // PUT /posts/:id
+  putById: (req, res) => {
+    res.send({
+      message: `Post with id: ${id} has been updated`
     })
   }
 }

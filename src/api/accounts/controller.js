@@ -5,6 +5,8 @@ const Account = require("./model")
 const helpers = require("../../helpers")
 
 module.exports = {
+  // ---------------------------------------------------------------------------
+  // GET /accounts
   get: (req, res) => {
     Account.find({}, (err, accounts) => {
       res.send({
@@ -13,6 +15,8 @@ module.exports = {
     })
   },
 
+  // ---------------------------------------------------------------------------
+  // GET /accounts/:id
   getById: (req, res) => {
     Account.findOne({ id: Number(req.params.id) }, (err, account) => {
       res.send({
@@ -22,7 +26,9 @@ module.exports = {
     })
   },
 
-  getByEmail: (req, res) => {
+  // ---------------------------------------------------------------------------
+  // GET /accounts?username=yourname&email=yourname@domain.com
+  getByQuery: (req, res) => {
     Account.findOne({ email: req.params.email }, (error, account) => {
       res.send({
         params: req.params,
@@ -31,6 +37,8 @@ module.exports = {
     })
   },
 
+  // ---------------------------------------------------------------------------
+  // DELETE /accounts
   delete: (req, res) => {
     Account.remove({}, (error) => {
       if (error) res.status(400).json({ error: error })
@@ -38,6 +46,8 @@ module.exports = {
     })
   },
 
+  // ---------------------------------------------------------------------------
+  // POST /accounts/register
   register: (req, res) => {
     const body = {
       name: req.body.name,
@@ -59,6 +69,8 @@ module.exports = {
     })
   },
 
+  // ---------------------------------------------------------------------------
+  // POST /accounts/login
   login: (req, res) => {
     const body = {
       email: req.body.email,
@@ -131,20 +143,13 @@ module.exports = {
     // Finished sign in
   },
 
+  // ---------------------------------------------------------------------------
+  // POST /accounts/logout
   logout: (req, res) => {
     const body = {}
 
     res.send({
       registered: body
-    })
-  },
-
-  test: (req, res) => {
-    const body = { email: req.body.email }
-    Account.findOne({ email: body.email }).then((account) => {
-      res.send({
-        account
-      })
     })
   }
 }

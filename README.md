@@ -104,9 +104,9 @@ Root URL: `http://localhost:3000`
 | Endpoint     | HTTP | Description |
 |--------------|------|-------------|
 | `/posts`     | GET  | Get all posts
-| `/posts`     | DEL  | Delete all posts
-| `/posts`     | POST | Create a new post
 | `/posts/:id` | GET  | Get thing by id
+| `/posts`     | POST | Create a new post
+| `/posts`     | DEL  | Delete all posts
 | `/posts/:id` | DEL  | Delete thing by id
 | `/posts/:id` | PUT  | Update thing by id
 
