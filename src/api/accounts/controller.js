@@ -66,10 +66,9 @@ module.exports = {
     }
 
     const newAccount = new Account(body)
+    delete body.password
 
     newAccount.save((error) => {
-      delete body.password
-
       if (error) res.send("error")
       else {
         res.send({
