@@ -8,6 +8,21 @@ module.exports = {
     return token
   },
 
+  setLoggedIn: (body, condition) => {
+    Account.findOneAndUpdate(
+      { id: body.id },
+      {
+        $set: {
+          logged_in: condition
+        }
+      },
+      { new: true },
+      (error, resource) => {
+        console.log(resource)
+      }
+    )
+  },
+
   isAuthenticated: (req, res, next) => {
     // (1) Check for token from various ways
     const token =

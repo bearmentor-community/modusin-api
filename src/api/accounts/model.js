@@ -31,7 +31,11 @@ const schema = new Schema(
     },
     password: String,
     hash: String,
-    salt: String
+    salt: String,
+    logged_in: {
+      type: Boolean,
+      default: false
+    }
   },
   { timestamps: true }
 )

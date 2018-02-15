@@ -92,15 +92,16 @@ module.exports = {
       {
         id: Number(req.params.id)
       },
+      { $set: newPost },
       {
         new: true, // return the modified document
         upsert: false // create new resource if not exist
       },
-      (error, data) => {
+      (error, resource) => {
         if (error) res.send({ message: "Error when updating post" })
         res.send({
           message: `Post with id: ${id} has been updated`,
-          data: data
+          data: resource
         })
       }
     )

@@ -117,9 +117,12 @@ Root URL: `http://localhost:3000`
 | `/register`     | POST | Sign up for a new user
 | `/login`        | POST | Sign in with existed user
 | `/logout`       | POST | Sign in with existed user
+
+| Endpoint        | HTTP | Description |
+|-----------------|------|-------------|
 | `/accounts`     | GET  | Get all accounts
-| `/accounts`     | DEL  | Delete all accounts
 | `/accounts/:id` | GET  | Get one user profile by id
+| `/accounts`     | DEL  | Delete all accounts
 | `/accounts/:id` | DEL  | Delete one user profile by id
 | `/accounts/:id` | PUT  | Update one user profile by id
 

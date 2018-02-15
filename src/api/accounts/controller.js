@@ -1,3 +1,4 @@
+const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
 
 const Account = require("./model")
@@ -131,19 +132,21 @@ module.exports = {
 
           // (5) Generate a token
           const token = helpers.generateJWT(content)
-
           // console.log({ token })
 
-          // (6) Finally send that token
+          // (6) Set logged in status
+          helpers.setLoggedIn(account.id, true)
+
+          // (7) Finally send that token
           res.send({
-            message: "Logged in",
+            message: "You are logged in",
             email: body.email,
             token: token
           })
         }
       })
       .catch((err) => {
-        // (7) If there's an error while finding the account
+        // If there's an error while finding the account
         if (err)
           res.send({
             message: `Something went wrong when try to logging in`
@@ -153,12 +156,17 @@ module.exports = {
   },
 
   // ---------------------------------------------------------------------------
-  // POST /accounts/logout
+  // GET /accounts/logout
   logout: (req, res) => {
-    const body = {}
+    const decoded = {
+      id: req.decoded.id
+    }
+
+    // (6) Set logged in status
+    helpers.setLoggedIn(decoded.id, false)
 
     res.send({
-      registered: body
+      message: `User with id: ${decoded.id} is logged out`
     })
   }
 }
