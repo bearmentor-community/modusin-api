@@ -1,5 +1,8 @@
 # Modusin API & Data Specification
 
+![master](https://travis-ci.org/modusintech/api.svg?branch=master)
+![mhaidarh-api](https://travis-ci.org/modusintech/api.svg?branch=mhaidarh-api)
+
 > Modusin is a publishing network for learners
 
 The goal of this app is to clone a [Medium](https://medium.com) web app, called [Modusin](https://modusin.com).
