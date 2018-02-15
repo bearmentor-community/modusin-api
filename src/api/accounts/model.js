@@ -78,7 +78,6 @@ schema.pre("save", function(next) {
 schema.pre("find", function(next) {
   this.select({
     __v: false,
-    password: false,
     hash: false,
     salt: false
   })
@@ -91,7 +90,6 @@ schema.pre("find", function(next) {
 schema.pre("findOne", function(next) {
   this.select({
     __v: false,
-    password: false,
     hash: false,
     salt: false
   })

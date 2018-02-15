@@ -29,7 +29,12 @@ module.exports = {
   // ---------------------------------------------------------------------------
   // GET /accounts?username=yourname&email=yourname@domain.com
   getByQuery: (req, res) => {
-    Account.findOne({ email: req.params.email }, (error, account) => {
+    const query = {
+      username: req.params.username,
+      email: req.params.email
+    }
+
+    Account.findOne(query, (error, account) => {
       res.send({
         params: req.params,
         data: account
@@ -72,17 +77,21 @@ module.exports = {
   // ---------------------------------------------------------------------------
   // POST /accounts/login
   login: (req, res) => {
+    // Create body object
     const body = {
       email: req.body.email,
       password: req.body.password
     }
 
+    // Find one account by email
     Account.findOne({ email: body.email })
       .then((account) => {
         const validPassword = bcrypt.compareSync(
           body.password,
           account.password
         )
+
+        console.log(validPassword)
 
         // console.log(">>> account found:", account)
         // console.log({ validPassword })

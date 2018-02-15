@@ -14,13 +14,13 @@ module.exports = {
       req.body.token ||
       req.query.token ||
       req.headers.authorization.split(" ")[1] ||
-      "unknown"
+      undefined
 
     // (2) There's a token coming in!
-    console.log({ token })
+    // console.log({ token })
 
     // (3A) Decode the token if it's available
-    if (token !== "unknown") {
+    if (token !== undefined) {
       // (4) Verifies JWT token with provided secret and checks expiration
       jwt.verify(token, process.env.JWT_SECRET, (error, decoded) => {
         // (5) If there is an error when verifying the token...
