@@ -13,9 +13,9 @@ const http = require("http")
  */
 
 const port = normalizePort(process.env.PORT || "3000")
-const host = normalizePort(process.env.HOST || "localhost")
+// const host = process.env.HOST || "localhost"
 
-app.set("host", host)
+// app.set("host", host)
 app.set("port", port)
 
 /**
@@ -28,8 +28,8 @@ const server = http.createServer(app)
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port, host, () => {
-  console.log(`App is listening on ${host}:${port}`)
+server.listen(port, () => {
+  console.log(`App is listening on :${port}`)
 })
 
 server.on("error", onError)
