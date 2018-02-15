@@ -9,11 +9,15 @@ module.exports = {
   // ---------------------------------------------------------------------------
   // GET /accounts
   get: (req, res) => {
-    Account.find({}, (err, accounts) => {
-      res.send({
-        data: accounts
+    Account.find({})
+      .populate({
+        path: "posts"
       })
-    })
+      .exec((err, accounts) => {
+        res.send({
+          data: accounts
+        })
+      })
   },
 
   // ---------------------------------------------------------------------------

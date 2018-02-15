@@ -54,30 +54,22 @@ schema.plugin(sequence, { id: "post_counter", inc_field: "id" })
 // DATA POPULATION
 
 schema.pre("find", function(next) {
-  this.select({
-    __v: false
-  })
-  // this.populate({ path: "creator", select: "name -_id" })
   next()
 })
 
 schema.pre("findOne", function(next) {
-  this.select({
-    __v: false
-  })
-  // this.populate([{ path: "creator", select: "name username url" }])
   next()
 })
 
 // Set updatedAt timestamp
-// schema.pre("update", function() {
-//   this.update(
-//     {},
-//     {
-//       $set: { updatedAt: new Date() }
-//     }
-//   )
-// })
+schema.pre("update", function() {
+  this.update(
+    {},
+    {
+      $set: { updatedAt: new Date() }
+    }
+  )
+})
 
 // -----------------------------------------------------------------------------
 // FINALLY REGISTER THE SCHEMA INTO MODEL

@@ -8,18 +8,24 @@ module.exports = {
   // GET /posts
   get: (req, res) => {
     // Find all resources
-    Post.find({}, (err, resources) => {
-      res.send({
-        data: resources
+    Post.find({})
+      .populate({
+        path: "creator",
+        select: "name"
       })
-    })
+      .exec((error, resources) => {
+        if (error) res.send(error)
+        res.send({
+          data: resources
+        })
+      })
   },
 
   // ---------------------------------------------------------------------------
   // GET /posts/:id
   getById: (req, res) => {
     // Find one resource
-    Post.findOne({ id: Number(req.params.id) }, (err, resource) => {
+    Post.findOne({ id: Number(req.params.id) }).exec((err, resource) => {
       res.send({
         params: req.params,
         data: resource

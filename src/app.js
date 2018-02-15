@@ -30,7 +30,8 @@ app.use("/accounts", accounts)
 app.use("/settings", settings)
 
 mongoose.Promise = global.Promise // native Node.js promise
-mongoose.connect(process.env.MONGODB_URI)
+const MONGODB_URI = process.env.MONGODB_URI
+mongoose.connect(MONGODB_URI)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

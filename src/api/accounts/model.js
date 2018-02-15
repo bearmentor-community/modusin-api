@@ -120,21 +120,22 @@ schema.pre("save", function(next) {
 
 schema.pre("find", function(next) {
   this.select({
-    __v: false,
-    hash: false,
-    salt: false
+    hash: 0,
+    salt: 0,
+    login: 0,
+    login_token: 0,
+    reset_token: 0
   })
-  this.populate({ path: "posts", select: "-_id -creator" })
   next()
 })
 
 schema.pre("findOne", function(next) {
   this.select({
-    __v: false,
-    hash: false,
-    salt: false
+    hash: 0,
+    salt: 0,
+    login: 0,
+    login_token: 0
   })
-  this.populate({ path: "posts", select: "-_id -creator" })
   next()
 })
 
