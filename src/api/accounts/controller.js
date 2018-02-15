@@ -60,12 +60,13 @@ module.exports = {
       email: req.body.email,
       password: req.body.password
     }
+
     const newAccount = new Account(body)
 
-    newAccount.save((err) => {
+    newAccount.save((error) => {
       delete body.password
 
-      if (err) res.send("error")
+      if (error) res.send("error")
       else {
         res.send({
           registered: body,
@@ -92,7 +93,7 @@ module.exports = {
           account.password
         )
 
-        console.log(validPassword)
+        // console.log(validPassword)
 
         // console.log(">>> account found:", account)
         // console.log({ validPassword })
@@ -135,7 +136,7 @@ module.exports = {
           // console.log({ token })
 
           // (6) Set logged in status
-          helpers.setLoggedIn(account.id, true)
+          helpers.setLoggedIn(account, true)
 
           // (7) Finally send that token
           res.send({

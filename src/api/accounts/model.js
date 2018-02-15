@@ -20,7 +20,6 @@ const SALT_WORK_FACTOR = 8
 
 const schema = new Schema(
   {
-    // Internal
     name: {
       type: String
     },
@@ -32,6 +31,9 @@ const schema = new Schema(
     password: String,
     hash: String,
     salt: String,
+    username: String,
+    url: String,
+    bio: String,
     logged_in: {
       type: Boolean,
       default: false

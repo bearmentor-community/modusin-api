@@ -18,7 +18,7 @@ module.exports = {
       },
       { new: true },
       (error, resource) => {
-        console.log(resource)
+        // console.log("")
       }
     )
   },

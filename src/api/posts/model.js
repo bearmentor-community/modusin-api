@@ -10,6 +10,7 @@ const Schema = mongoose.Schema
 // PRECONFIGURATION
 
 const modelName = "Post"
+
 // -----------------------------------------------------------------------------
 // SCHEMA
 
@@ -32,9 +33,7 @@ const schema = new Schema(
       type: String
     },
     slug: {
-      type: String,
-      unique: true,
-      lowercase: true
+      type: String
     },
     read_time: {
       type: Number
@@ -56,7 +55,7 @@ schema.pre("find", function(next) {
   this.select({
     __v: false
   })
-  this.populate([{ path: "author", select: "name username url" }])
+  // this.populate([{ path: "creator", select: "name" }])
   next()
 })
 
@@ -64,19 +63,19 @@ schema.pre("findOne", function(next) {
   this.select({
     __v: false
   })
-  this.populate([{ path: "author", select: "name username url" }])
+  // this.populate([{ path: "creator", select: "name username url" }])
   next()
 })
 
 // Set updatedAt timestamp
-schema.pre("update", function() {
-  this.update(
-    {},
-    {
-      $set: { updatedAt: new Date() }
-    }
-  )
-})
+// schema.pre("update", function() {
+//   this.update(
+//     {},
+//     {
+//       $set: { updatedAt: new Date() }
+//     }
+//   )
+// })
 
 // -----------------------------------------------------------------------------
 // FINALLY REGISTER THE SCHEMA INTO MODEL

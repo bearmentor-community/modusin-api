@@ -10,6 +10,7 @@ module.exports = {
     // Find all resources
     Post.find({}, (err, resources) => {
       res.send({
+        m: "...",
         data: resources
       })
     })
@@ -19,10 +20,10 @@ module.exports = {
   // GET /posts/:id
   getById: (req, res) => {
     // Find one resource
-    Post.findOne({ id: Number(req.params.id) }, (err, account) => {
+    Post.findOne({ id: Number(req.params.id) }, (err, resource) => {
       res.send({
         params: req.params,
-        data: account
+        data: resource
       })
     })
   },
@@ -34,28 +35,15 @@ module.exports = {
     const body = {
       creator: req.decoded.sub, // subject _id from JWT
       title: req.body.title,
-      content: req.body.content,
-      image_name: req.body.image_name,
-      image_url: req.body.image_url
+      content: req.body.content
     }
 
-    try {
-      // Create new resource object
-      const newPost = new Post(body)
-
-      // Save the resource
-      newPost.save((error) => {
-        res.send({
-          message: "New post has been saved",
-          data: body
-        })
-      })
-    } catch (error) {
-      // Response an error
+    Post.create(body, (error, resource) => {
       res.send({
-        message: "Something went wrong when posting new post"
+        message: "New post has been saved",
+        data: body
       })
-    }
+    })
   },
 
   // ---------------------------------------------------------------------------
