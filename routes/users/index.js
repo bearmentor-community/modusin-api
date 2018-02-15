@@ -1,8 +1,16 @@
-var express = require('express');
-var router = express.Router();
-const usersController = require('../../controllers/users')
+const express = require("express")
+const router = express.Router()
 
-// GET all users
-router.get('/', usersController.list)
+const controller = require("../../controllers/users")
+const helpers = require('../../helpers')
 
-module.exports = router;
+router.get("/", helpers.isAuthenticated, controller.getAll)
+router.get("/:id", helpers.isAuthenticated, controller.getOne)
+
+router.post("/register", controller.register)
+router.post("/login", controller.login)
+router.post("/logout", controller.logout)
+
+router.post("/test", helpers.isAuthenticated, controller.test)
+
+module.exports = router
