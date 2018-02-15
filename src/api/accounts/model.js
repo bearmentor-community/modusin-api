@@ -120,6 +120,7 @@ schema.pre("save", function(next) {
 
 schema.pre("find", function(next) {
   this.select({
+    password: 0,
     hash: 0,
     salt: 0,
     login: 0,

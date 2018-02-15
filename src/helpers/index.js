@@ -64,7 +64,7 @@ module.exports = {
           } else {
             // (9) The valid account is found!
             // That actual account is authenticated with valid token
-            console.log({ account })
+            // console.log({ account })
             return next()
           }
         })
