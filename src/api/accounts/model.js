@@ -37,7 +37,13 @@ const schema = new Schema(
     logged_in: {
       type: Boolean,
       default: false
-    }
+    },
+    posts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Post"
+      }
+    ]
   },
   { timestamps: true }
 )
@@ -87,9 +93,7 @@ schema.pre("find", function(next) {
     hash: false,
     salt: false
   })
-  // this.populate([
-  //   { path: "posts.post", select: "title content" }
-  // ])
+  this.populate({ path: "posts", select: "-_id -creator" })
   next()
 })
 
@@ -99,9 +103,7 @@ schema.pre("findOne", function(next) {
     hash: false,
     salt: false
   })
-  // this.populate([
-  //   { path: "posts.post", select: "title content" }
-  // ])
+  this.populate({ path: "posts", select: "-_id -creator" })
   next()
 })
 

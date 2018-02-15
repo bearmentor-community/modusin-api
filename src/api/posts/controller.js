@@ -10,7 +10,6 @@ module.exports = {
     // Find all resources
     Post.find({}, (err, resources) => {
       res.send({
-        m: "...",
         data: resources
       })
     })
@@ -38,11 +37,23 @@ module.exports = {
       content: req.body.content
     }
 
-    Post.create(body, (error, resource) => {
-      res.send({
-        message: "New post has been saved",
-        data: body
-      })
+    // Save into Posts
+    Post.create(body, (error, post) => {
+      // Save new post into selected Account
+      Account.findOneAndUpdate(
+        { _id: body.creator },
+        {
+          $push: {
+            posts: post._id
+          }
+        },
+        (error, account) => {
+          res.send({
+            message: "New post has been saved",
+            data: body
+          })
+        }
+      )
     })
   },
 

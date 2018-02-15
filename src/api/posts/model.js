@@ -6,6 +6,8 @@ const mongoose = require("mongoose")
 const sequence = require("mongoose-sequence")(mongoose)
 const Schema = mongoose.Schema
 
+const Account = require("../accounts/model")
+
 // -----------------------------------------------------------------------------
 // PRECONFIGURATION
 
@@ -55,7 +57,7 @@ schema.pre("find", function(next) {
   this.select({
     __v: false
   })
-  // this.populate([{ path: "creator", select: "name" }])
+  // this.populate({ path: "creator", select: "name -_id" })
   next()
 })
 
