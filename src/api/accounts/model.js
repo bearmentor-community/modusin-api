@@ -40,7 +40,7 @@ const schema = new Schema(
 // GENERATED FIELDS
 
 // Auto increment accountId
-schema.plugin(sequence, { inc_field: "id" })
+schema.plugin(sequence, { id: "account_counter", inc_field: "id" })
 
 // -----------------------------------------------------------------------------
 // MIDDLEWARES
