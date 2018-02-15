@@ -30,21 +30,24 @@ module.exports = {
   // ---------------------------------------------------------------------------
   // POST /posts
   post: (req, res) => {
+    // Create resource object from resource
+    const body = {
+      creator: req.decoded.sub, // subject _id from JWT
+      title: req.body.title,
+      content: req.body.content,
+      image_name: req.body.image_name,
+      image_url: req.body.image_url
+    }
+
     try {
       // Create new resource object
-      const newPost = new Post({
-        author: req.body._id,
-        title: req.body.title || "",
-        content: req.body.content || "",
-        image_name: req.body.image_name || "",
-        image_url: req.body.image_url || ""
-      })
+      const newPost = new Post(body)
 
       // Save the resource
       newPost.save((error) => {
         res.send({
           message: "New post has been saved",
-          data: newPost
+          data: body
         })
       })
     } catch (error) {

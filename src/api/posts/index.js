@@ -10,8 +10,8 @@ router.get("/:id", controller.getById)
 
 router.post("/", helpers.isAuthenticated, controller.post)
 
-router.delete("/", controller.delete)
-router.delete("/:id", controller.deleteById)
+router.delete("/", helpers.isAuthenticated, controller.delete)
+router.delete("/:id", helpers.isAuthenticated, controller.deleteById)
 
 router.put("/:id", helpers.isAuthenticated, controller.putById)
 
