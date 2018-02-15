@@ -48,8 +48,11 @@ GitHub => Heroku => CloudFlare => api.modusin.com
 ### Running
 
 ```sh
+heroku login
 yarn deploy
 ```
+
+Access: 
 
 --------------------------------------------------------------------------------
 
