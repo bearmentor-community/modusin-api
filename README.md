@@ -12,10 +12,11 @@ The goal of this app is to clone a [Medium](https://medium.com) web app, called 
 ## Tech Stack
 
 - Node.js
+- Yarn
 - Express.js / Sails.js
-- MongoDB & Mongoose
-- PostgreSQL & Sequelize
-- Heroku / Now.sh
+- MongoDB, Mongoose, MongoDB Atlas
+- Travis CI
+- Heroku
 
 --------------------------------------------------------------------------------
 
