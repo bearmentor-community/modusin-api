@@ -56,7 +56,7 @@ schema.pre("find", function(next) {
   this.select({
     __v: false
   })
-  this.populate([{ path: "author", select: "name url" }])
+  this.populate([{ path: "author", select: "name username url" }])
   next()
 })
 
@@ -64,7 +64,7 @@ schema.pre("findOne", function(next) {
   this.select({
     __v: false
   })
-  this.populate([{ path: "author", select: "name url" }])
+  this.populate([{ path: "author", select: "name username url" }])
   next()
 })
 
