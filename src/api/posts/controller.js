@@ -10,8 +10,7 @@ module.exports = {
     // Find all resources
     Post.find({})
       .populate({
-        path: "creator",
-        select: "name"
+        path: "creator"
       })
       .exec((error, resources) => {
         if (error) res.send(error)
