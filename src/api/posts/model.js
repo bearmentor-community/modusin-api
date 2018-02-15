@@ -15,7 +15,14 @@ const modelName = "Post"
 
 const schema = new Schema(
   {
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: "Account"
+    },
     title: {
+      type: String
+    },
+    content: {
       type: String
     },
     slug: {
@@ -29,15 +36,8 @@ const schema = new Schema(
     image_url: {
       type: String
     },
-    content: {
-      type: String
-    },
     read_time: {
       type: Number
-    },
-    author: {
-      type: Schema.Types.ObjectId,
-      ref: "Account"
     }
   },
   { timestamps: true }
