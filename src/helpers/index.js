@@ -13,7 +13,7 @@ module.exports = {
       { id: body.id },
       {
         $set: {
-          logged_in: condition
+          login: condition
         }
       },
       { new: true },

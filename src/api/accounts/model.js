@@ -20,6 +20,7 @@ const SALT_WORK_FACTOR = 8
 
 const schema = new Schema(
   {
+    // Internal
     name: {
       type: String
     },
@@ -31,13 +32,43 @@ const schema = new Schema(
     password: String,
     hash: String,
     salt: String,
-    username: String,
-    url: String,
-    bio: String,
-    logged_in: {
+    login: {
       type: Boolean,
       default: false
     },
+    login_token: {
+      type: String,
+      default: ""
+    },
+    reset_token: {
+      type: String,
+      default: ""
+    },
+    // Profile
+    username: {
+      type: String,
+      default: ""
+    },
+    url: {
+      type: String,
+      default: "https://modusin.com"
+    },
+    bio: {
+      type: String,
+      default: ""
+    },
+    followings: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Account"
+      }
+    ],
+    followers: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Account"
+      }
+    ],
     posts: [
       {
         type: Schema.Types.ObjectId,

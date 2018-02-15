@@ -112,11 +112,11 @@ Root URL: `http://localhost:3000`
 
 ### Accounts
 
-| Endpoint        | HTTP | Description |
-|-----------------|------|-------------|
-| `/register`     | POST | Sign up for a new user
-| `/login`        | POST | Sign in with existed user
-| `/logout`       | POST | Sign in with existed user
+| Endpoint             | HTTP | Description |
+|----------------------|------|-------------|
+| `/accounts/register` | POST | Sign up for a new user
+| `/accounts/login`    | POST | Sign in with existed user
+| `/accounts/logout`   | POST | Sign in with existed user
 
 | Endpoint        | HTTP | Description |
 |-----------------|------|-------------|
