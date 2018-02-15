@@ -5,7 +5,7 @@ const Account = require("./model")
 const helpers = require("../../helpers")
 
 module.exports = {
-  getAll: (req, res) => {
+  get: (req, res) => {
     Account.find({}, (err, accounts) => {
       res.send({
         data: accounts
@@ -13,14 +13,28 @@ module.exports = {
     })
   },
 
-  getOne: (req, res) => {
-    const id = Number(req.params.id)
-
-    Account.findOne({ id: id }, (err, account) => {
+  getById: (req, res) => {
+    Account.findOne({ id: Number(req.params.id) }, (err, account) => {
       res.send({
-        id: id,
+        params: req.params,
         data: account
       })
+    })
+  },
+
+  getByEmail: (req, res) => {
+    Account.findOne({ email: req.params.email }, (error, account) => {
+      res.send({
+        params: req.params,
+        data: account
+      })
+    })
+  },
+
+  delete: (req, res) => {
+    Account.remove({}, (error) => {
+      if (error) res.status(400).json({ error: error })
+      res.status(200).send({ message: "All accounts have been removed." })
     })
   },
 

@@ -75,19 +75,41 @@ schema.pre("save", function(next) {
 // -----------------------------------------------------------------------------
 // DATA POPULATION
 
-// schema.pre("find", function(next) {
-//   this.populate("books.book", "title")
-//   next()
-// })
-//
-// schema.pre("findOne", function(next) {
-//   this.populate("books.book", "title")
-//   next()
-// })
-//
-// schema.pre("update", function() {
-//   this.update({}, { $set: { updatedAt: new Date() } })
-// })
+schema.pre("find", function(next) {
+  this.select({
+    __v: false,
+    password: false,
+    hash: false,
+    salt: false
+  })
+  // this.populate([
+  //   { path: "posts.post", select: "title content" }
+  // ])
+  next()
+})
+
+schema.pre("findOne", function(next) {
+  this.select({
+    __v: false,
+    password: false,
+    hash: false,
+    salt: false
+  })
+  // this.populate([
+  //   { path: "posts.post", select: "title content" }
+  // ])
+  next()
+})
+
+// Set updatedAt timestamp
+schema.pre("update", function() {
+  this.update(
+    {},
+    {
+      $set: { updatedAt: new Date() }
+    }
+  )
+})
 
 // -----------------------------------------------------------------------------
 // FINALLY REGISTER THE SCHEMA INTO MODEL
