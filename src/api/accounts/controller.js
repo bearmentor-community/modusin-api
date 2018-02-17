@@ -167,7 +167,7 @@ module.exports = {
     }
 
     // (6) Set logged in status
-    helpers.setLoggedIn(decoded.id, false)
+    helpers.setLoggedIn(decoded, false)
 
     res.send({
       message: `User with id: ${decoded.id} is logged out`

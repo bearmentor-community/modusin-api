@@ -10,15 +10,19 @@ module.exports = {
 
   setLoggedIn: (body, condition) => {
     Account.findOneAndUpdate(
-      { id: body.id },
+      {
+        id: body.id
+      },
       {
         $set: {
           login: condition
         }
       },
-      { new: true },
+      {
+        new: true
+      },
       (error, resource) => {
-        // console.log("")
+        console.log(`Account with id ${body.id} is logged out`)
       }
     )
   },

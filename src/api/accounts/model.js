@@ -133,9 +133,7 @@ schema.pre("find", function(next) {
 schema.pre("findOne", function(next) {
   this.select({
     hash: 0,
-    salt: 0,
-    login: 0,
-    login_token: 0
+    salt: 0
   })
   next()
 })
