@@ -1,5 +1,8 @@
 # Modusin API & Data Specification
 
+![master](https://travis-ci.org/modusintech/api.svg?branch=master)
+![mhaidarh-api](https://travis-ci.org/modusintech/api.svg?branch=mhaidarh-api)
+
 > Modusin is a publishing network for learners
 
 The goal of this app is to clone a [Medium](https://medium.com) web app, called [Modusin](https://modusin.com).
@@ -9,10 +12,11 @@ The goal of this app is to clone a [Medium](https://medium.com) web app, called 
 ## Tech Stack
 
 - Node.js
+- Yarn
 - Express.js / Sails.js
-- MongoDB & Mongoose
-- PostgreSQL & Sequelize
-- Heroku / Now.sh
+- MongoDB, Mongoose, MongoDB Atlas
+- Travis CI
+- Heroku
 
 --------------------------------------------------------------------------------
 
@@ -48,8 +52,11 @@ GitHub => Heroku => CloudFlare => api.modusin.com
 ### Running
 
 ```sh
+heroku login
 yarn deploy
 ```
+
+Access: 
 
 --------------------------------------------------------------------------------
 
@@ -104,22 +111,25 @@ Root URL: `http://localhost:3000`
 | Endpoint     | HTTP | Description |
 |--------------|------|-------------|
 | `/posts`     | GET  | Get all posts
-| `/posts`     | DEL  | Delete all posts
-| `/posts`     | POST | Create a new post
 | `/posts/:id` | GET  | Get thing by id
+| `/posts`     | POST | Create a new post
+| `/posts`     | DEL  | Delete all posts
 | `/posts/:id` | DEL  | Delete thing by id
 | `/posts/:id` | PUT  | Update thing by id
 
 ### Accounts
 
+| Endpoint             | HTTP | Description |
+|----------------------|------|-------------|
+| `/accounts/register` | POST | Sign up for a new user
+| `/accounts/login`    | POST | Sign in with existed user
+| `/accounts/logout`   | POST | Sign in with existed user
+
 | Endpoint        | HTTP | Description |
 |-----------------|------|-------------|
-| `/register`     | POST | Sign up for a new user
-| `/login`        | POST | Sign in with existed user
-| `/logout`       | POST | Sign in with existed user
 | `/accounts`     | GET  | Get all accounts
-| `/accounts`     | DEL  | Delete all accounts
 | `/accounts/:id` | GET  | Get one user profile by id
+| `/accounts`     | DEL  | Delete all accounts
 | `/accounts/:id` | DEL  | Delete one user profile by id
 | `/accounts/:id` | PUT  | Update one user profile by id
 

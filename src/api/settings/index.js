@@ -3,7 +3,8 @@ const router = express.Router()
 
 const controller = require("./controller")
 
-router.get("/", controller.get)
-router.get("/api", controller.get)
+const helpers = require("../../helpers")
+
+router.get("/", helpers.isAuthenticated, controller.get)
 
 module.exports = router
