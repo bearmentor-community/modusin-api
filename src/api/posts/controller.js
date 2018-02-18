@@ -24,7 +24,7 @@ module.exports = {
   // GET /posts/:id
   getById: (req, res) => {
     // Find one resource
-    Post.findOne({ id: Number(req.params.id) }).exec((err, resource) => {
+    Post.findOne({id: Number(req.params.id)}).exec((err, resource) => {
       res.send({
         params: req.params,
         data: resource
@@ -46,7 +46,7 @@ module.exports = {
     Post.create(body, (error, post) => {
       // Save new post into selected Account
       Account.findOneAndUpdate(
-        { _id: body.creator },
+        {_id: body.creator},
         {
           $push: {
             posts: post._id
@@ -59,6 +59,24 @@ module.exports = {
           })
         }
       )
+    })
+  },
+
+  // ---------------------------------------------------------------------------
+  // POST /posts/bypass
+  postBypass: (req, res) => {
+    // Create resource object from resource
+    const body = {
+      title: req.body.title,
+      content: req.body.content
+    }
+
+    // Save into Posts
+    Post.create(body, (error, post) => {
+      res.send({
+        message: "New post has been saved",
+        data: body
+      })
     })
   },
 
@@ -77,7 +95,7 @@ module.exports = {
   // DELETE /posts/:id
   deleteById: (req, res) => {
     // Remove one resource by id
-    Post.remove({ id: Number(req.params.id) }, (error, account) => {
+    Post.remove({id: Number(req.params.id)}, (error, account) => {
       res.send({
         message: `Post with id: ${id} has been deleted`,
         data: account
@@ -99,13 +117,13 @@ module.exports = {
       {
         id: Number(req.params.id)
       },
-      { $set: newPost },
+      {$set: newPost},
       {
         new: true, // return the modified document
         upsert: false // create new resource if not exist
       },
       (error, resource) => {
-        if (error) res.send({ message: "Error when updating post" })
+        if (error) res.send({message: "Error when updating post"})
         res.send({
           message: `Post with id: ${id} has been updated`,
           data: resource
