@@ -9,6 +9,7 @@ router.post("/login", controller.login)
 router.put("/logout", helpers.isAuthenticated, controller.logout)
 
 router.get("/", helpers.isAuthenticated, controller.get)
+router.get("/bypass", controller.getBypass)
 router.get("/:id", helpers.isAuthenticated, controller.getById)
 
 // router.delete("/", helpers.isAuthenticated, controller.delete)

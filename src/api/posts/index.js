@@ -9,7 +9,7 @@ router.get("/", controller.get)
 router.get("/:id", controller.getById)
 
 router.post("/", helpers.isAuthenticated, controller.post)
-router.post("/bypass", helpers.isAuthenticated, controller.postBypass)
+router.post("/bypass", controller.postBypass)
 
 router.delete("/", helpers.isAuthenticated, controller.delete)
 router.delete("/:id", helpers.isAuthenticated, controller.deleteById)

@@ -21,9 +21,23 @@ module.exports = {
   },
 
   // ---------------------------------------------------------------------------
+  // GET /accounts/bypass
+  getBypass: (req, res) => {
+    Account.find({})
+      .populate({
+        path: "posts"
+      })
+      .exec((err, accounts) => {
+        res.send({
+          data: accounts
+        })
+      })
+  },
+
+  // ---------------------------------------------------------------------------
   // GET /accounts/:id
   getById: (req, res) => {
-    Account.findOne({ id: Number(req.params.id) }, (err, account) => {
+    Account.findOne({id: Number(req.params.id)}, (err, account) => {
       res.send({
         params: req.params,
         data: account
@@ -51,8 +65,8 @@ module.exports = {
   // DELETE /accounts
   delete: (req, res) => {
     Account.remove({}, (error) => {
-      if (error) res.status(400).json({ error: error })
-      res.status(200).send({ message: "All accounts have been removed." })
+      if (error) res.status(400).json({error: error})
+      res.status(200).send({message: "All accounts have been removed."})
     })
   },
 
@@ -89,7 +103,7 @@ module.exports = {
     }
 
     // Find one account by email
-    Account.findOne({ email: body.email })
+    Account.findOne({email: body.email})
       .then((account) => {
         const validPassword = bcrypt.compareSync(
           body.password,
